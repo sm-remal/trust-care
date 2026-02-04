@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         <header>
           <Navbar></Navbar>
         </header>
-        <main className="flex-1">
+        <main className="flex-1 mt-16">
           {children}
         </main>
         <footer>
