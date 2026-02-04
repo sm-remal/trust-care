@@ -16,6 +16,7 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
   { name: "About Us", href: "/about" },
+  { name: "Contact Us", href: "/contact" },
 ];
 
 const Navbar = () => {
@@ -42,7 +43,7 @@ const Navbar = () => {
               key={link.href}
               href={link.href}
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive(link.href) ? "text-primary font-bold" : "text-muted-foreground"
+                isActive(link.href) ? "text-primary font-bold" : "text-black"
               }`}
             >
               {link.name}
