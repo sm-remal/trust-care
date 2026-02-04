@@ -69,7 +69,7 @@ export default function AboutPage() {
                                 </p>
 
                                 <p className="text-justify hyphens-auto">
-                                    Today, we are proud to have helped thousands of families find peace of mind. Our mission remains to provide every household with a certified, background-verified "family member" you can trust.
+                                    Today, we are proud to have helped thousands of families find peace of mind. Our mission remains to provide every household with a certified, background-verified family member you can trust.
                                 </p>
                             </div>
                             <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
