@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google"; 
 import CredentialsProvider from "next-auth/providers/credentials"; 
 import bcrypt from "bcryptjs"; // password compare
-import { dbConnect, collections } from "@/lib/db"; 
+import { dbConnect, collections } from "@/lib/dbConnect"; 
 
 export const authOptions = {
   providers: [
