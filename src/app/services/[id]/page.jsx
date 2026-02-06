@@ -84,7 +84,7 @@ export default async function ServiceDetailsPage({ params }) {
 
           {/* Interactive Sidebar */}
           <div className="lg:col-span-1">
-            <BookingCard price={service.price} availability={service.availability} />
+            <BookingCard service={service} price={service.price} availability={service.availability} />
           </div>
                 {/* Navigation */}
         <Link href="/services" className="inline-flex items-center gap-2 text-slate-500 hover:text-primary mb-8 font-semibold transition-colors group">
