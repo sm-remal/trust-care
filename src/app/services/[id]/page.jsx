@@ -4,6 +4,51 @@ import Link from "next/link";
 import { CheckCircle, ShieldCheck, Star, ArrowLeft, UserRound, Stethoscope } from "lucide-react";
 import BookingCard from "@/components/Card/BookingCard";
 
+
+export async function generateMetadata({ params }) {
+  try {
+    const { id } = params;
+    const service = await getSingleService(id);
+
+    if (!service || !service._id) {
+      return {
+        title: "Service Not Found | Trust Care",
+        description: "The requested service could not be found.",
+      };
+    }
+
+    return {
+      title: `${service.title} | Trust Care`,
+      description:
+        service.shortDescription ||
+        service.fullDescription?.slice(0, 160),
+
+      openGraph: {
+        title: `${service.title} | Trust Care`,
+        description:
+          service.shortDescription ||
+          service.fullDescription?.slice(0, 160),
+        images: [
+          {
+            url: service.image,
+            width: 1200,
+            height: 630,
+            alt: service.title,
+          },
+        ],
+        type: "website",
+      },
+    };
+  } catch (error) {
+    return {
+      title: "Trust Care | Trusted Care Services",
+      description:
+        "Reliable baby sitting and elderly care services you can trust.",
+    };
+  }
+}
+
+
 export default async function ServiceDetailsPage({ params }) {
   const { id } = await params;
   const service = await getSingleService(id);
