@@ -85,7 +85,7 @@ const ServiceCard = ({ service }) => {
           <Link href={`/services/${_id}`}>
             <Button size="sm" className="rounded-xl font-bold shadow-lg shadow-primary/20 group-hover:bg-primary group-hover:text-white transition-all cursor-pointer">
               View Details <ArrowRight className="ml-1 h-4 w-4" />
-            </Button>
+            </Button> 
           </Link>
         </div>
       </div>
