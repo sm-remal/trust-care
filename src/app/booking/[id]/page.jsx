@@ -8,7 +8,7 @@ export default async function BookingPage({ params }) {
     const { id } = await params;
     const service = await getSingleService(id);
 
-    if (!service) return <div className="text-center py-20">Service not found!</div>;
+    if (!service) return <div className="text-center py-20">Service not found!</div>; 
 
     return (
         <div className="min-h-screen bg-slate-50/50 pt-28 pb-20">

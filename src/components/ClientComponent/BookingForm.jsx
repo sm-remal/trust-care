@@ -6,10 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "react-hot-toast";
+import { useSession } from "next-auth/react";
 
 export default function BookingForm({ service }) {
     const [duration, setDuration] = useState(1);
     const [totalCost, setTotalCost] = useState(0);
+
+    const { data: session } = useSession();
 
     const extractPrice = (priceStr) => {
         if (!priceStr) return 0;
@@ -34,11 +37,18 @@ export default function BookingForm({ service }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
 
+        if (status === "loading") return;
+
+        if (!session?.user?.email) {
+            return toast.error("User login session not found.");
+        }
+
+        const formData = new FormData(e.target);
         const bookingData = {
-            serviceId: service._id,
-            serviceName: service.title,
+            serviceId: service?._id,
+            serviceName: service?.title,
+            userEmail: session.user.email,
             duration: `${duration} Unit`,
             totalCost,
             location: {
@@ -53,9 +63,14 @@ export default function BookingForm({ service }) {
 
         try {
             await createBooking(bookingData);
-            toast.success("Booking Saved as Pending!");
+            toast.success("Booking successful!"); 
         } catch (error) {
-            toast.error("Booking failed. Please try again.");
+            // Next.js redirect error ignore logic
+            if (error.message === "NEXT_REDIRECT") {
+                return; 
+            }
+            console.error("Submit Error:", error);
+            toast.error("Booking failed. Please check your connection.");
         }
     };
 
@@ -92,8 +107,8 @@ export default function BookingForm({ service }) {
                 </div>
             </div>
 
-            <Button type="submit" className="w-full py-6 rounded-md text-lg font-black shadow-md shadow-primary/20 bg-primary text-white cursor-pointer">
-                Confirm Booking
+            <Button type="submit" disabled={status === "loading"} className="w-full py-6 rounded-md text-lg font-black shadow-md shadow-primary/20 bg-primary text-white cursor-pointer">
+                {status === "loading" ? "Checking Session..." : "Confirm Booking"}
             </Button>
         </form>
     );

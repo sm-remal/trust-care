@@ -17,7 +17,7 @@ export default function BookingCard({service, price, availability }) {
           <div className="flex items-center gap-2 text-primary mb-2">
             <Zap size={14} fill="currentColor" />
             <span className="text-[10px] font-black uppercase tracking-[0.2em]">Service Fee</span>
-          </div>
+          </div> 
           <h3 className="text-4xl font-black text-white mt-1">{price}</h3>
         </div>
 

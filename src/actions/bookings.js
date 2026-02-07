@@ -4,6 +4,10 @@ import { collections, dbConnect } from "@/lib/dbConnect";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+
+// ===========================================
+
+// Save booking in database
 export const createBooking = async (bookingData) => {
   
   const bookingCollection = dbConnect(collections.BOOKINGS);
@@ -23,4 +27,35 @@ export const createBooking = async (bookingData) => {
     throw new Error("Failed to create booking");
   }
   redirect("/my-bookings");
+};
+
+// ==========================================
+
+// Get user booking after login 
+export const getMyBookings = async (email) => {
+  try {
+    const bookingCollection = dbConnect(collections.BOOKINGS);
+    const bookings = await bookingCollection.find({ userEmail: email }).toArray();
+    return JSON.parse(JSON.stringify(bookings));
+  } catch (error) {
+    console.error("Fetch Error:", error);
+    return [];
+  }
+};
+
+// ==========================================
+
+// Cancel booking 
+export const cancelBooking = async (id) => {
+  try {
+    const bookingCollection = dbConnect(collections.BOOKINGS);
+    await bookingCollection.updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { status: "Cancelled" } }
+    );
+    revalidatePath("/my-bookings");
+    return { success: true };
+  } catch (error) {
+    return { success: false };
+  }
 };
