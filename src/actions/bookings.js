@@ -23,7 +23,7 @@ export const createBooking = async (bookingData) => {
     const result = await bookingCollection.insertOne(finalBooking);
     if (result.insertedId) {
       revalidatePath("/my-bookings");
-      await sendBookingEmail(bookingData);  // add=================
+      await sendBookingEmail(bookingData);
     }
   } catch (error) {
     console.error("Booking Error:", error);
@@ -32,22 +32,16 @@ export const createBooking = async (bookingData) => {
   redirect("/my-bookings");
 };
 
-
-
-
-
-
-
 // Nodemailer Email Function
 const sendBookingEmail = async (booking) => {
   try {
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST, // যেমন: smtp.gmail.com
+      host: process.env.SMTP_HOST, 
       port: Number(process.env.SMTP_PORT) || 587,
-      secure: false, // true হলে TLS
+      secure: false, 
       auth: {
-        user: process.env.SMTP_USER, // তোমার ইমেল
-        pass: process.env.SMTP_PASS, // App Password
+        user: process.env.SMTP_USER, 
+        pass: process.env.SMTP_PASS, 
       },
     });
 
@@ -75,14 +69,6 @@ const sendBookingEmail = async (booking) => {
     console.error("Email Error:", error);
   }
 };
-
-
-
-
-
-
-
-
 
 // ==========================================
 
