@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function BookingPage({ params }) {
+export default async function BookingPage({ params }) { 
     const { id } = await params;
     const service = await getSingleService(id);
 

@@ -29,7 +29,7 @@ export default function BookingForm({ service }) {
         const p = Number(basePrice) || 0;
 
         if (p > 0) {
-            setTotalCost(d * p);
+            setTotalCost(d * p); 
         } else {
             setTotalCost(0);
         }
