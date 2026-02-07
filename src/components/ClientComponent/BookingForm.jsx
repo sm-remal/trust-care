@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "react-hot-toast";
 import { useSession } from "next-auth/react";
 
-export default function BookingForm({ service }) {
+export default function BookingForm({ service }) { 
     const [duration, setDuration] = useState(1);
     const [totalCost, setTotalCost] = useState(0);
 

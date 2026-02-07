@@ -8,6 +8,7 @@ export const collections = {
     USER: "user",
     SERVICES: "services",
     BOOKINGS: "bookings",
+    COVERAGE: "coverage",
 }
 
 

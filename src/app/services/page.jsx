@@ -10,7 +10,7 @@ export default async function ServicesPage() {
   return (
     <div className="min-h-screen bg-slate-50/50">
       
-      {/* Static Server-side Banner */}
+      {/* Static Server-side Banner */} 
       <section className="relative h-[450px] w-full flex items-center justify-center overflow-hidden">
         <Image 
           src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=2070&auto=format&fit=crop" 

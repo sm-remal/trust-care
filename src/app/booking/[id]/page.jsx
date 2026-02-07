@@ -1,3 +1,4 @@
+import { getCoverage } from "@/actions/coverage";
 import { getSingleService } from "@/actions/services";
 import BookingForm from "@/components/ClientComponent/BookingForm";
 import { ArrowLeft } from "lucide-react";
@@ -7,6 +8,9 @@ import Link from "next/link";
 export default async function BookingPage({ params }) { 
     const { id } = await params;
     const service = await getSingleService(id);
+    const coverage = await getCoverage();
+
+    console.log(coverage)  // Kal ei jaiga theke shuru hobe
 
     if (!service) return <div className="text-center py-20">Service not found!</div>; 
 
