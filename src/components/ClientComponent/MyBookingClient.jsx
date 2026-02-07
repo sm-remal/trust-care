@@ -12,7 +12,7 @@ export default function MyBookingClient({ initialBookings }) {
   const handleDelete = async (id) => {
     if (confirm("Are you sure you want to cancel this booking?")) {
       const res = await cancelBooking(id);
-      if (res.success) toast.success(res.message);
+      if (res.success) toast.success("Successfully Cancel");
       else toast.error(res.message);
     }
   };
