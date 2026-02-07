@@ -107,22 +107,22 @@ const Navbar = () => {
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <Link href="/dashboard">
+                <Link href="/my-bookings">
                     <DropdownMenuItem className="cursor-pointer">
                         <LayoutDashboard className="mr-2 h-4 w-4" />
-                        <span>Dashboard</span>
+                        <span>My Bookings</span>
                     </DropdownMenuItem>
                 </Link>
-                <Link href="/profile">
+                {/* <Link href="/profile">
                     <DropdownMenuItem className="cursor-pointer">
                         <User className="mr-2 h-4 w-4" />
                         <span>Profile</span>
                     </DropdownMenuItem>
-                </Link>
-                <DropdownMenuItem className="cursor-pointer">
+                </Link> */}
+                {/* <DropdownMenuItem className="cursor-pointer">
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Settings</span>
-                </DropdownMenuItem>
+                </DropdownMenuItem> */}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem 
                     className="cursor-pointer text-red-600 focus:text-red-600 focus:bg-red-50"
@@ -192,8 +192,8 @@ const Navbar = () => {
                 {session ? (
                     <div className="space-y-3">
                         <SheetClose asChild>
-                            <Link href="/dashboard" className="flex items-center gap-3 px-2 py-2 text-slate-600 hover:text-primary">
-                                <LayoutDashboard size={20} /> Dashboard
+                            <Link href="/my-bookings" className="flex items-center gap-3 px-2 py-2 text-slate-600 hover:text-primary">
+                                <LayoutDashboard size={20} /> My Bookings
                             </Link>
                         </SheetClose>
                         <SheetClose asChild>
