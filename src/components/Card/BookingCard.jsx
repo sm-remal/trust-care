@@ -25,7 +25,7 @@ export default function BookingCard({service, price, availability }) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3 text-slate-300 font-medium">
               <Clock size={20} className="text-primary" />
-              <span className="text-sm">Shift Time</span>
+              <span className="text-sm">Shift Time</span> 
             </div>
             <span className="text-sm font-bold">{availability}</span>
           </div>

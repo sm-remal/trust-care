@@ -10,7 +10,7 @@ export default async function BookingPage({ params }) {
     const service = await getSingleService(id);
     const coverage = await getCoverage();
 
-    console.log(coverage)  // Kal ei jaiga theke shuru hobe
+    console.log(coverage)  
 
     if (!service) return <div className="text-center py-20">Service not found!</div>; 
 
@@ -36,7 +36,7 @@ export default async function BookingPage({ params }) {
                     </div>
 
                     {/* Dynamic Booking Form (Client Side) */}
-                    <BookingForm service={service} />
+                    <BookingForm service={service} coverage={coverage} />
                 </div>
             </div>
         </div>
