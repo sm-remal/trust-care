@@ -102,9 +102,9 @@ const Services = () => {
               
               {/* Footer / Button */}
               <CardFooter className="">
-                <Link href={service.link} className="w-full">
+                <Link href={"/services"} className="w-full">
                   <Button variant="outline" className="w-full justify-between group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                    Book Now <ArrowRight className="h-4 w-4" />
+                    Learn more <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
               </CardFooter>
