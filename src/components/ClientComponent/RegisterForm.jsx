@@ -9,9 +9,10 @@ import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, Lock, Mail, User, Phone, ArrowRight, CreditCard } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { postUser } from "@/actions/auth";
+import { signIn } from "next-auth/react";
 
 //  Define Validation Schema
 const registerSchema = z.object({
@@ -31,6 +32,10 @@ export default function RegisterForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  // Get callbackUrl login
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+
   //  Initialize Hook Form
   const {
     register,
@@ -47,7 +52,7 @@ export default function RegisterForm() {
       const response = await postUser(data);
       if (response.success) {
         toast.success("Account created successfully!");
-        router.push("/login");
+        router.push(`/login?callbackUrl=${encodeURIComponent(callbackUrl)}`);
       } else {
         toast.error(response.message || "Registration failed");
       }
@@ -56,6 +61,11 @@ export default function RegisterForm() {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Google SignIN
+  const handleSocialLogin = (provider) => {
+    signIn(provider, { callbackUrl });
   };
 
   return (
@@ -156,7 +166,7 @@ export default function RegisterForm() {
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <Button variant="outline" type="button" className="h-12 rounded-xl border-slate-200 font-bold active:scale-95 transition-all cursor-pointer hover:bg-slate-50">
+        <Button onClick={() => handleSocialLogin("google")} variant="outline" type="button" className="h-12 rounded-xl border-slate-200 font-bold active:scale-95 transition-all cursor-pointer hover:bg-slate-50">
           <FcGoogle size={20} className="mr-2" /> Google
         </Button>
         <Button variant="outline" type="button" className="h-12 rounded-xl border-slate-200 font-bold active:scale-95 transition-all text-[#1877F2] cursor-pointer hover:bg-slate-50">

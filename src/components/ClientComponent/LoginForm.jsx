@@ -11,7 +11,7 @@ import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 // 1. Define Login Schema
@@ -24,6 +24,9 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   // 2. Initialize React Hook Form
   const {
@@ -49,6 +52,7 @@ export default function LoginForm() {
       } else {
         toast.success("Welcome back!");
         router.push("/"); // Redirect to a protected route
+        router.push(callbackUrl);
         router.refresh();
       }
     } catch (error) {
@@ -60,7 +64,7 @@ export default function LoginForm() {
 
   // 4. Social Login Handler
   const handleSocialLogin = (provider) => {
-    signIn(provider, { callbackUrl: "/dashboard" });
+    signIn(provider, { callbackUrl: callbackUrl });
   };
 
   return (

@@ -126,7 +126,7 @@ const Navbar = () => {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem 
                     className="cursor-pointer text-red-600 focus:text-red-600 focus:bg-red-50"
-                    onClick={() => signOut({ callbackUrl: '/login' })}
+                    onClick={() => signOut({ callbackUrl: '/' })}
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Log out</span>
@@ -136,10 +136,10 @@ const Navbar = () => {
           ) : (
             // ============ LOGGED OUT VIEW ============
             <>
-              <Link href="/login">
+              <Link href={`/login?callbackUrl=${encodeURIComponent(pathname)}`}>
                 <Button variant="ghost" className="text-slate-600 hover:text-primary hover:bg-primary/5 font-semibold">Log in</Button>
               </Link>
-              <Link href="/register">
+              <Link href={`/register?callbackUrl=${encodeURIComponent(pathname)}`}>
                 <Button className="shadow-lg shadow-primary/25 font-bold rounded-sm px-6">
                     Sign Up
                 </Button>
@@ -208,12 +208,12 @@ const Navbar = () => {
                 ) : (
                     <div className="flex flex-col gap-3 mt-4">
                         <SheetClose asChild>
-                        <Link href="/login">
+                        <Link href={`/login?callbackUrl=${encodeURIComponent(pathname)}`}>
                             <Button variant="outline" className="w-full h-12 rounded-xl font-bold border-slate-200">Log in</Button>
                         </Link>
                         </SheetClose>
                         <SheetClose asChild>
-                        <Link href="/register">
+                        <Link href={`/register?callbackUrl=${encodeURIComponent(pathname)}`}>
                             <Button className="w-full h-12 rounded-xl font-bold shadow-lg shadow-primary/20">Sign Up</Button>
                         </Link>
                         </SheetClose>
