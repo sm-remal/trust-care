@@ -52,8 +52,9 @@ export default function LoginForm() {
       } else {
         toast.success("Welcome back!");
         // router.push("/"); // Redirect to a protected route
-        router.push(callbackUrl);
-        router.refresh();
+        // router.push(callbackUrl);
+        // router.refresh();
+        window.location.href = callbackUrl;
       }
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
