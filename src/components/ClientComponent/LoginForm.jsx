@@ -64,15 +64,10 @@ export default function LoginForm() {
   };
 
   // 4. Social Login Handler
-  // const handleSocialLogin = (provider) => {
-  //   signIn(provider, { callbackUrl: callbackUrl });
-  // };
-
   const handleSocialLogin = async (provider) => {
   try {
     await signIn(provider, { 
       callbackUrl: callbackUrl,
-      redirect: true
     });
   } catch (error) {
     console.error("Social login error:", error);
