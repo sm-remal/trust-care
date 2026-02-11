@@ -51,7 +51,7 @@ export default function LoginForm() {
         toast.error("Invalid email or password");
       } else {
         toast.success("Welcome back!");
-        router.push("/"); // Redirect to a protected route
+        // router.push("/"); // Redirect to a protected route
         router.push(callbackUrl);
         router.refresh();
       }
